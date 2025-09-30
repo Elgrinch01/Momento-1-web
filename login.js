@@ -103,7 +103,7 @@ btnLogin.addEventListener('click', () => {
     } else {
         intentos--;
         if (intentos > 0) {
-            mensaje.textContent = `Usuario o contraseña incorrecta. Te quedan ${intentos} intentos`;
+            mensaje.textContent = `Usuario o contraseña incorrecta. Te quedan ${intentos} intentos.`;
             mensaje.className = 'mt-4 text-center text-sm text-red-600';
         } else {
             mensaje.textContent = 'Usuario bloqueado por seguridad. Por favor, intenta más tarde.';
