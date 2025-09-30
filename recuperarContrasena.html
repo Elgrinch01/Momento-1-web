@@ -30,21 +30,33 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Nombre de usuario</label>
-                    <input type="text" placeholder="Ingresa tu nombre de usuario" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/60 backdrop-blur-sm
-                        focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300">
+                    <input type="text" id="recuperar-usuario" placeholder="Ingresa tu nombre de usuario" 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white/60 backdrop-blur-sm
+                           focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-300">
                 </div>
 
-                <button class="w-full py-3 px-4 bg-black text-white font-medium rounded-xl
+                <button id="btn-recuperar" class="w-full py-3 px-4 bg-black text-white font-medium rounded-xl
                     hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-black
                     focus:ring-offset-2 transform hover:-translate-y-0.5 transition-all duration-300">
                     Recuperar Contraseña
                 </button>
+
+                <!-- Área para mensajes -->
+                <div id="mensaje" class="mt-4 text-center"></div>
+
+                <!-- Botón para volver al login -->
+                <div class="text-center mt-4">
+                    <a href="login.html" class="text-sm text-gray-600 hover:text-gray-900">
+                        Volver al inicio de sesión
+                    </a>
+                </div>
             </div>
 
         </div>
     </div>
 
-
+    <!-- Script -->
+    <script src="recuperarContrasena.js"></script>
 </body>
 
 </html>

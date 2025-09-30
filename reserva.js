@@ -1,47 +1,74 @@
 
 
-let usuario = prompt(`Ingrese su usuario:`);
+// DOM Elements
+const usuarioInput = document.getElementById('usuario');
+const libroInput = document.getElementById('libro');
+const fechaReservaInput = document.getElementById('fecha-reserva');
+const entregaDomicilioSelect = document.getElementById('entrega-domicilio');
+const domicilioContainer = document.getElementById('domicilio-container');
+const domicilioInput = document.getElementById('domicilio');
+const btnReservar = document.getElementById('btn-reservar');
+const resumenReserva = document.getElementById('resumen-reserva');
+const resumenContenido = document.getElementById('resumen-contenido');
+const mensaje = document.getElementById('mensaje');
 
-
-const saludarflecha = (usuario) =>
-    console.log(`Bienvenido al sistema de Reserva de libros, ${usuario}`);
-
-saludarflecha(usuario);
-
-let libro = prompt(`Ingrese el título del libro que desea reservar: `);
-
-let fechaReserva = prompt(`Ingrese la fecha de hoy: (En letras)`);
-
-let fechaDevolucion = prompt(`(Cuente 15 días a partir de hoy e ingrésela:(En letras)  )`);
-let lugarEntrega;
-let domicilio;
-
-lugarEntrega = prompt(`Desea entrega a domicilio?: (Responda si o no)`);
-
-const lugarEntregaFlecha = () => {
-    if (lugarEntrega.toLowerCase() == 'si' || lugarEntrega.toLowerCase() == 'sí') {
-        domicilio = prompt(`Ingrese la dirección del domicilio en el cual desea recibir los/el  libro(s):`);
-        console.log(`El libro será entregado en: ${domicilio}`);
+// Show/hide domicilio input based on selection
+entregaDomicilioSelect.addEventListener('change', function() {
+    if (this.value === 'si') {
+        domicilioContainer.classList.remove('hidden');
     } else {
-        alert(`El lugar de entrega será con retiro en la biblioteca. Lo esperamos en los siguientes dias. `)
+        domicilioContainer.classList.add('hidden');
+        domicilioInput.value = '';
     }
-}
+});
 
+// Handle reservation
+btnReservar.addEventListener('click', () => {
+    const usuario = usuarioInput.value.trim();
+    const libro = libroInput.value.trim();
+    const fechaReserva = fechaReservaInput.value;
+    const entregaDomicilio = entregaDomicilioSelect.value;
+    const domicilio = domicilioInput.value.trim();
 
-lugarEntregaFlecha();
+    // Validate fields
+    if (!usuario || !libro || !fechaReserva) {
+        mensaje.textContent = 'Por favor complete todos los campos obligatorios';
+        mensaje.className = 'mt-4 text-center text-sm text-red-600';
+        return;
+    }
 
-alert(`El libro deberá ser entregado antes de ${fechaDevolucion}`);
+    if (entregaDomicilio === 'si' && !domicilio) {
+        mensaje.textContent = 'Por favor ingrese la dirección de entrega';
+        mensaje.className = 'mt-4 text-center text-sm text-red-600';
+        return;
+    }
 
-console.log(`Resumen de la reserva`);
-console.log(`Usuario: ${usuario}`);
-console.log(`libro reservado: ${libro}`);
-console.log(`Fecha de reserva: ${fechaReserva}`);
-console.log(`Fecha de devolución: ${fechaDevolucion}`);
-if (domicilio) {
-    console.log(`Dirección de entrega: ${domicilio}`)
-} else {
-    console.log(`Modalidad de entrega con retiro en biblioteca. `)
-}
+    // Calculate return date (15 days from reservation)
+    const fechaDevolucion = new Date(fechaReserva);
+    fechaDevolucion.setDate(fechaDevolucion.getDate() + 15);
+
+    // Format dates for display
+    const fechaReservaFormatted = new Date(fechaReserva).toLocaleDateString('es-ES');
+    const fechaDevolucionFormatted = fechaDevolucion.toLocaleDateString('es-ES');
+
+    // Show reservation summary
+    resumenContenido.innerHTML = `
+        <p><strong>Usuario:</strong> ${usuario}</p>
+        <p><strong>Libro reservado:</strong> ${libro}</p>
+        <p><strong>Fecha de reserva:</strong> ${fechaReservaFormatted}</p>
+        <p><strong>Fecha de devolución:</strong> ${fechaDevolucionFormatted}</p>
+        <p><strong>Modalidad de entrega:</strong> ${
+            entregaDomicilio === 'si' 
+            ? `Entrega a domicilio en: ${domicilio}`
+            : 'Retiro en biblioteca'
+        }</p>
+    `;
+
+    // Show success message and summary
+    mensaje.textContent = '¡Reserva realizada con éxito!';
+    mensaje.className = 'mt-4 text-center text-sm text-green-600';
+    resumenReserva.classList.remove('hidden');
+});
 
 
 
