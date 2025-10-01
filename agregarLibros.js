@@ -1,15 +1,14 @@
-// DOM Elements
+
 const cantidadInput = document.getElementById('cantidad');
 const contenedorLibros = document.getElementById('contenedor-libros');
 const btnAgregar = document.getElementById('btnAgregar');
 const librosAgregados = document.getElementById('libros-agregados');
 
-// Event listener for quantity input
+
 cantidadInput.addEventListener('change', function() {
     generarFormularioLibros(this.value);
 });
 
-// Event listener for add button
 btnAgregar.addEventListener('click', function() {
     procesarLibros();
 });
@@ -60,7 +59,7 @@ function procesarLibros() {
 
 function agregarLibro(titulo, autor, anio) {
     if (titulo && autor && anio) {
-        // Create new book element
+    
         const libroElement = document.createElement('div');
         libroElement.className = 'bg-white/90 p-4 rounded-xl shadow-md';
         libroElement.innerHTML = `
@@ -68,8 +67,7 @@ function agregarLibro(titulo, autor, anio) {
             <p class="text-gray-600">Autor: ${autor}</p>
             <p class="text-gray-600">Año: ${anio}</p>
         `;
-        
-        // Add to the display area
+    
         librosAgregados.appendChild(libroElement);
         return true;
     } else {
