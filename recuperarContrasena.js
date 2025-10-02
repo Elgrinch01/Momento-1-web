@@ -1,10 +1,10 @@
 
-// DOM Elements
+
 const recuperarUsuario = document.getElementById('recuperar-usuario');
 const btnRecuperar = document.getElementById('btn-recuperar');
 const mensaje = document.getElementById('mensaje');
 
-// Verificar si ya hay una sesión activa
+
 window.addEventListener('load', () => {
     const sesionActiva = localStorage.getItem('sesionActiva');
     if (sesionActiva) {
@@ -12,9 +12,9 @@ window.addEventListener('load', () => {
     }
 });
 
-// Function to show password recovery result
+
 function mostrarResultadoRecuperacion(usuario, contrasena) {
-    // Crear el contenedor del resultado
+
     const resultadoDiv = document.createElement('div');
     resultadoDiv.className = 'p-4 bg-green-100 rounded-xl mt-4';
     resultadoDiv.innerHTML = `
@@ -34,20 +34,20 @@ function mostrarResultadoRecuperacion(usuario, contrasena) {
     mensaje.innerHTML = '';
     mensaje.appendChild(resultadoDiv);
 
-    // Agregar evento al botón de ir a login
+
     document.getElementById('btn-ir-login').addEventListener('click', () => {
-        // Guardar los datos temporalmente para auto-completar el formulario de login
+
         localStorage.setItem('tempLoginUser', usuario);
         window.location.href = 'login.html';
     });
 
-    // Agregar evento para inicio de sesión automático
+
     document.getElementById('btn-auto-login').addEventListener('click', () => {
-        // Guardar la sesión como activa
+
         localStorage.setItem('sesionActiva', usuario);
         localStorage.setItem('loginAutomatico', 'true');
         
-        // Mostrar mensaje de éxito
+
         const successDiv = document.createElement('div');
         successDiv.className = 'p-4 bg-green-100 rounded-xl mt-4';
         successDiv.innerHTML = `
@@ -57,14 +57,14 @@ function mostrarResultadoRecuperacion(usuario, contrasena) {
         mensaje.innerHTML = '';
         mensaje.appendChild(successDiv);
 
-        // Redireccionar después de un breve delay
+
         setTimeout(() => {
             window.location.href = 'agregarLibros.html';
         }, 1500);
     });
 }
 
-// Function to recover password
+
 btnRecuperar.addEventListener('click', () => {
     console.log('Botón de recuperar contraseña clickeado');
     const usuario = recuperarUsuario.value.trim();
@@ -75,7 +75,7 @@ btnRecuperar.addEventListener('click', () => {
         return;
     }
 
-    // Recuperar datos del localStorage
+
     const usuarioGuardado = localStorage.getItem('usuarioRegistrado');
     const contrasenaGuardada = localStorage.getItem('contrasenaRegistrada');
     
@@ -88,7 +88,7 @@ btnRecuperar.addEventListener('click', () => {
         mostrarResultadoRecuperacion(usuario, contrasenaGuardada);
     } else {
         console.log('Usuario no encontrado');
-        // Crear mensaje de error
+
         const errorDiv = document.createElement('div');
         errorDiv.className = 'p-4 bg-red-100 rounded-xl mt-4';
         errorDiv.innerHTML = `
