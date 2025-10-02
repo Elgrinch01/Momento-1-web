@@ -53,7 +53,7 @@ function procesarLibros() {
 
     if (librosAgregadosCount > 0) {
         alert(`¡Se agregaron ${librosAgregadosCount} libros correctamente!`);
-        // Limpiar el formulario después de agregar los libros
+
         contenedorLibros.innerHTML = '';
         cantidadInput.value = '';
     }
@@ -61,7 +61,7 @@ function procesarLibros() {
 
 function agregarLibro(titulo, autor, fechaPublicacion) {
     if (titulo && autor && fechaPublicacion) {
-        // Formatear la fecha como dd/mm/yyyy
+
         const fecha = fechaPublicacion.toLocaleDateString('es-ES', {
             day: '2-digit',
             month: '2-digit',
