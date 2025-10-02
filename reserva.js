@@ -40,8 +40,8 @@ btnReservar.addEventListener('click', () => {
   const fechaDevolucion = new Date(fechaReserva);
   fechaDevolucion.setDate(fechaDevolucion.getDate() + 15);
 
-  const fechaReservaFormatted = new Date(fechaReserva).toLocaleDateString('es-ES');
-  const fechaDevolucionFormatted = fechaDevolucion.toLocaleDateString('es-ES');
+  const fechaReservaFormatted = new Date(fechaReserva).toLocaleDateString();
+  const fechaDevolucionFormatted = fechaDevolucion.toLocaleDateString();
 
   resumenContenido.innerHTML = `
     <p><strong>Usuario:</strong> ${usuario}</p>
